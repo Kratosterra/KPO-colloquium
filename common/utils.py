@@ -28,4 +28,3 @@ def create_database() -> None:
         logging.debug(f"Создание базы данных произошло с ошибкой: {error}.")
     finally:
         conn.close()
-

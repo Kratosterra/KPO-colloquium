@@ -19,7 +19,6 @@ def hello():
     return jsonify({'message': 'Hello!'}), 200
 
 
-#
 @app.route('/workouts', methods=['GET'])
 def get_workouts():
     """

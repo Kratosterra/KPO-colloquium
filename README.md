@@ -17,6 +17,11 @@
 #### [Коллекция на Postman](https://speeding-firefly-4619.postman.co/workspace/Team-Workspace~15d16320-a434-4dc9-82a7-9f575832f6c3/collection/10879421-c76a06bb-1aae-4c05-a837-5494f2d81b6b?action=share&creator=10879421)
 #### [Документация на Postman](https://documenter.getpostman.com/view/10879421/2s93si19yJ)
 
+### Запуск
+Просто запустите файл main и затем воспользуйтесь коллекцией postman для тестирования: 
+
+``python3 main.py``
+
 ### Технологии
 
 - [**Flask**](https://flask.palletsprojects.com/en/2.3.x/)
