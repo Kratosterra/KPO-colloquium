@@ -1,11 +1,10 @@
 import logging
-import sqlite3
-from datetime import datetime, timedelta
 
 from flask import Flask
 from flask import jsonify, request
 
 from service.models.workout import Workout
+
 # Создаём экземпляр приложения.
 app = Flask(__name__)
 workout = Workout()
@@ -23,6 +22,9 @@ def hello():
 #
 @app.route('/workouts', methods=['GET'])
 def get_workouts():
+    """
+    Получает набор всех тренировок.
+    """
     logging.debug(f"{get_workouts.__name__}: Получение всех тренировок!")
     data = workout.get_all_workouts()
     logging.debug(f"{get_workouts.__name__}: Получение информация {data}!")
@@ -31,6 +33,9 @@ def get_workouts():
 
 @app.route('/workouts', methods=['POST'])
 def add_workout():
+    """
+    Добавляет тренировку.
+    """
     logging.debug(f"{add_workout.__name__}: Добавление тренировки!")
     data = request.get_json()
     status = workout.from_args_database(data)
@@ -42,6 +47,9 @@ def add_workout():
 
 @app.route('/workouts/<int:id>', methods=['GET'])
 def get_workout_info(id):
+    """
+    Получает тренировку по id.
+    """
     logging.debug(f"{get_workout_info.__name__}: Получение тренировки с id {id}!")
     status = workout.get_workout(id)
     if status is None:
@@ -49,18 +57,26 @@ def get_workout_info(id):
     else:
         return jsonify(status), 200
 
+
 @app.route('/workouts/<int:id>', methods=['PUT'])
 def update_workout_info(id):
+    """
+    Обновляет тренировку по id.
+    """
     logging.debug(f"{update_workout_info.__name__}: Обновление тренировки с id {id}!")
     data = request.get_json()
     status = workout.update_workout(id, data)
     if status is False:
         return jsonify({'error': 'Workout not found or error on updating!'}), 404
     else:
-        return jsonify(message=status), 200
+        return jsonify(message='Workout updated'), 200
+
 
 @app.route('/workouts/<int:id>', methods=['DELETE'])
 def delete_workout(id):
+    """
+    Удаляет тренировку по id.
+    """
     logging.debug(f"{delete_workout.__name__}: Удаление тренировки с id {id}!")
     status = workout.delete_workout(id)
     if status is False:

@@ -12,7 +12,7 @@ def create_database() -> None:
     conn = sqlite3.connect(r'database/database.db')
     try:
         cursor = conn.cursor()
-        # Создание таблицы "user"
+        # Создание таблицы "project/workouts"
         cursor.execute('''
                 CREATE TABLE IF NOT EXISTS project (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
